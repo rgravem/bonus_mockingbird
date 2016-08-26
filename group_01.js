@@ -40,9 +40,9 @@ var bonusGenerator = function(employee){
   }
   return bonusPercentage;
 };
-for (var i = 0; i < employees.length; i++) {
-  console.log(bonusGenerator(employees[i]));
-}
+// for (var i = 0; i < employees.length; i++) {
+//   console.log(bonusGenerator(employees[i]));
+// }
 
 var compensationArray = function(employeeArray){
   var newArray = [];
@@ -54,7 +54,19 @@ var compensationArray = function(employeeArray){
     compensation.push(bonus + '%');
     //salary + bonus in $$
     var salary = parseInt(employeeArray[i][2]);
-    compensation.push('$' + (salary + salary * (bonus/100)));//bonus/100 creates bonus as a percentage for Maths
+    var totalComp = salary + salary * (bonus/100)
+    var splitSalary = String(totalComp).split('.');
+    //if salary is a float, add or truncate to 2 decimals
+    if (splitSalary[1]){
+      while (splitSalary[1].length < 2) {
+        splitSalary[1] += '0';
+      }
+      if (splitSalary[1].length > 2) {
+        splitSalary[1] = splitSalary[1].slice(0,2);
+      }
+      totalComp = splitSalary.join('.');
+    }
+    compensation.push('$' + (totalComp));//bonus/100 creates bonus as a percentage for Maths
     //bonus in rounded $$
     compensation.push('$' + parseInt(salary * (bonus/100)));
     //push compensation for single employee to newArray
@@ -66,8 +78,6 @@ var compensationArray = function(employeeArray){
 //out - Bonus %
 var salaryArray = compensationArray(employees);
 console.log(salaryArray);
-
-
 
 
 var displayCompensation = function(){
