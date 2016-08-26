@@ -32,7 +32,7 @@ var bonusGenerator = function(employee){
     default:
       console.log('Check review score, not 1 - 5');
   }
-  if (salary > 65000){
+  if (salary > 65000 && bonusPercentage > 0){
     bonusPercentage -= 1;
   }
   if (bonusPercentage > 13) {
