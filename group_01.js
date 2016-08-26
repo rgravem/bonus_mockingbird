@@ -89,16 +89,21 @@ console.log(salaryArray);
 var displayCompensation = function(){
   var displayString = '';
   document.getElementById('displayArea').innerHTML = '';
+  var foundEmployee = false;
   for (var i = 0; i < salaryArray.length; i++) {
     var employee = salaryArray[i];
     var employeeName = document.getElementById('nameIn').value;
     if (employee[0].toUpperCase() === employeeName.toUpperCase()) {
+      foundEmployee = true;
       for (var j = 0; j < employee.length; j++) {
         displayString += '<p>' + employee[j] + '</p>';
       }
     }
-
   }
+  if (!foundEmployee) {
+    displayString += 'Employee not found. Please enter a different name.';
+  }
+
   document.getElementById('nameIn').value = '';
   document.getElementById('displayArea').innerHTML = displayString;
 };
