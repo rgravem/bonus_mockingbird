@@ -69,9 +69,12 @@ var compensationArray = function(employeeArray){
       }
       totalComp = splitSalary.join('.');
     }
+    else {
+      totalComp += '.00'
+    }
     compensation.push('$' + (totalComp));//bonus/100 creates bonus as a percentage for Maths
     //bonus in rounded $$
-    compensation.push('$' + parseInt(salary * (bonus/100)));
+    compensation.push('$' + parseInt(salary * (bonus/100)) + '.00');
     //push compensation for single employee to newArray
     newArray.push(compensation);
   }
