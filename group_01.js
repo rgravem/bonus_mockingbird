@@ -54,8 +54,11 @@ var compensationArray = function(employeeArray){
     compensation.push(bonus + '%');
     //salary + bonus in $$
     var salary = parseInt(employeeArray[i][2]);
-    var totalComp = salary + salary * (bonus/100)
+    console.log('salary: ', salary);
+    var totalComp = salary + salary * (bonus/100);
+    console.log('totalComp: ', totalComp);
     var splitSalary = String(totalComp).split('.');
+    console.log('splitSalary: ', splitSalary);
     //if salary is a float, add or truncate to 2 decimals
     if (splitSalary[1]){
       while (splitSalary[1].length < 2) {
